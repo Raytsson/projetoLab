@@ -1,17 +1,13 @@
 package projetoAna.laboratorio.entities;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_clinica")
-public class Clinica implements Serializable {
+@Table(name = "tb_protetica")
+public class Protetica implements Serializable {
     private static final long SerialVersionUID = 1L;
 
     @Id
@@ -19,14 +15,10 @@ public class Clinica implements Serializable {
     private Long id;
     private String name;
 
-   @JsonIgnore
-    @OneToMany(mappedBy = "clinica")
-    private List<Dentista> dentista = new ArrayList<>();
-
-    public Clinica() {
+    public Protetica() {
     }
 
-    public Clinica(Long id, String name) {
+    public Protetica(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -47,16 +39,12 @@ public class Clinica implements Serializable {
         this.name = name;
     }
 
-    public List<Dentista> getDentista() {
-        return dentista;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Clinica clinica = (Clinica) o;
-        return Objects.equals(id, clinica.id);
+        Protetica protetica = (Protetica) o;
+        return Objects.equals(id, protetica.id);
     }
 
     @Override

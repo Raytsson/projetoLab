@@ -1,34 +1,30 @@
 package projetoAna.laboratorio.entities;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_clinica")
-public class Clinica implements Serializable {
+@Table(name = "tb_paciente")
+public class Paciente implements Serializable {
     private static final long SerialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private int idade;
+    private String corDente;
 
-   @JsonIgnore
-    @OneToMany(mappedBy = "clinica")
-    private List<Dentista> dentista = new ArrayList<>();
-
-    public Clinica() {
+    public Paciente() {
     }
 
-    public Clinica(Long id, String name) {
+    public Paciente(Long id, String name, int idade, String corDente) {
         this.id = id;
         this.name = name;
+        this.idade = idade;
+        this.corDente = corDente;
     }
 
     public Long getId() {
@@ -47,16 +43,28 @@ public class Clinica implements Serializable {
         this.name = name;
     }
 
-    public List<Dentista> getDentista() {
-        return dentista;
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public String getCorDente() {
+        return corDente;
+    }
+
+    public void setCorDente(String corDente) {
+        this.corDente = corDente;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Clinica clinica = (Clinica) o;
-        return Objects.equals(id, clinica.id);
+        Paciente paciente = (Paciente) o;
+        return Objects.equals(id, paciente.id);
     }
 
     @Override

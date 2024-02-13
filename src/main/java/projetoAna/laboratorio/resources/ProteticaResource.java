@@ -6,27 +6,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import projetoAna.laboratorio.entities.Dentista;
-import projetoAna.laboratorio.services.DentistaService;
+import projetoAna.laboratorio.entities.Protetica;
+import projetoAna.laboratorio.services.ProteticaService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/dentistas")
-public class DentistaResource {
+@RequestMapping("/proteticas")
+public class ProteticaResource {
 
     @Autowired
-    private DentistaService service;
+    private ProteticaService service;
 
     @GetMapping
-    public ResponseEntity<List<Dentista>> findAll(){
-        List<Dentista> list = service.findAll();
+    public ResponseEntity<List<Protetica>> findAll(){
+        List<Protetica> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public  ResponseEntity<Dentista> findById(@PathVariable Long id){
-        Dentista obj = service.findById(id);
+    public ResponseEntity<Protetica> findById(@PathVariable Long id){
+        Protetica obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
+
 }
