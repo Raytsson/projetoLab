@@ -16,6 +16,18 @@ public class Servico implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descricao;
+
+    @ManyToOne
+    @JoinColumn(name = "dentista_id")
+    private Dentista dentista;
+    @ManyToOne
+    @JoinColumn(name = "paciente_id")
+    private Paciente paciente;
+    @ManyToOne
+    @JoinColumn(name = "protetica_id")
+    private Protetica protetica;
+
+    
     @JsonFormat(
             pattern = "dd/MM/yyyy"
     )
@@ -28,11 +40,14 @@ public class Servico implements Serializable {
     public Servico() {
     }
 
-    public Servico(Long id, String descricao, LocalDate dataAbertura, LocalDate dataFechamento) {
+    public Servico(Long id, String descricao, LocalDate dataAbertura, LocalDate dataFechamento, Dentista dentista, Paciente paciente, Protetica protetica) {
         this.id = id;
         this.descricao = descricao;
         this.dataAbertura = dataAbertura;
         this.dataFechamento = dataFechamento;
+        this.dentista = dentista;
+        this.paciente = paciente;
+        this.protetica = protetica;
     }
 
     public Long getId() {
@@ -65,6 +80,30 @@ public class Servico implements Serializable {
 
     public void setDataFechamento(LocalDate dataFechamento) {
         this.dataFechamento = dataFechamento;
+    }
+
+    public Dentista getDentista() {
+        return dentista;
+    }
+
+    public void setDentista(Dentista dentista) {
+        this.dentista = dentista;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Protetica getProtetica() {
+        return protetica;
+    }
+
+    public void setProtetica(Protetica protetica) {
+        this.protetica = protetica;
     }
 
     @Override

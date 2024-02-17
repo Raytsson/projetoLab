@@ -22,4 +22,5 @@ public class ProteticaService {
         Optional<Protetica> obj = repository.findById(id);
         return obj.get();
     }
+
 }

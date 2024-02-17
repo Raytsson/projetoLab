@@ -1,17 +1,12 @@
 package projetoAna.laboratorio.config;
 
-import projetoAna.laboratorio.entities.Clinica;
+import projetoAna.laboratorio.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import projetoAna.laboratorio.entities.Dentista;
-import projetoAna.laboratorio.entities.Paciente;
-import projetoAna.laboratorio.entities.Servico;
-import projetoAna.laboratorio.repositories.ClinicaRepository;
-import projetoAna.laboratorio.repositories.DentistaRepository;
-import projetoAna.laboratorio.repositories.PacienteRepository;
-import projetoAna.laboratorio.repositories.ServicoRepository;
+import projetoAna.laboratorio.repositories.*;
+import projetoAna.laboratorio.services.ProteticaService;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -22,14 +17,14 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ClinicaRepository clinicaRepository;
-
     @Autowired
     private DentistaRepository dentistaRepository;
     @Autowired
     private PacienteRepository pacienteRepository;
-
     @Autowired
     private ServicoRepository servicoRepository;
+    @Autowired
+    private ProteticaRepository proteticaRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -60,9 +55,19 @@ public class TestConfig implements CommandLineRunner {
         pacienteRepository.saveAll(Arrays.asList(pac3));
         pacienteRepository.saveAll(Arrays.asList(pac4));
 
-        Servico serv1 = new Servico(null,"descricao do problema", LocalDate.now(), LocalDate.of(2024,02,27));
+        Protetica pro1 = new Protetica(null, "teste1");
+        Protetica pro2 = new Protetica(null, "teste2");
+        Protetica pro3 = new Protetica(null, "teste3");
+
+        proteticaRepository.saveAll(Arrays.asList(pro1));
+        proteticaRepository.saveAll(Arrays.asList(pro2));
+        proteticaRepository.saveAll(Arrays.asList(pro3));
+
+        Servico serv1 = new Servico(null,"descricao do problema", LocalDate.now(), LocalDate.of(2024,02,27),den1, pac1, pro1);
 
         servicoRepository.saveAll(Arrays.asList(serv1));
+
+
 
     }
 

@@ -1,8 +1,11 @@
 package projetoAna.laboratorio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +17,9 @@ public class Protetica implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @JsonIgnore
+    @OneToMany(mappedBy = "protetica")
+    private List<Servico> servico = new ArrayList<>();
 
     public Protetica() {
     }
@@ -37,6 +43,14 @@ public class Protetica implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Servico> getServico() {
+        return servico;
+    }
+
+    public void setServico(List<Servico> servico) {
+        this.servico = servico;
     }
 
     @Override
