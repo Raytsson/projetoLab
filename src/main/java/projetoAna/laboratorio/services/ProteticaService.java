@@ -22,5 +22,23 @@ public class ProteticaService {
         Optional<Protetica> obj = repository.findById(id);
         return obj.get();
     }
+    public Protetica insert(Protetica obj){
+        return repository.save(obj);
+    }
+
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
+
+    public Protetica update(Long id, Protetica obj){
+        Protetica entity = repository.getOne(id);
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(Protetica entity, Protetica obj) {
+        entity.setName(obj.getName());
+        entity.setServico(obj.getServico());
+    }
 
 }

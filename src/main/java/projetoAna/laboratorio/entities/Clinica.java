@@ -19,7 +19,7 @@ public class Clinica implements Serializable {
     private Long id;
     private String name;
 
-   @JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "clinica")
     private List<Dentista> dentista = new ArrayList<>();
 
