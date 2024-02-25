@@ -23,4 +23,22 @@ public class ClinicaService {
         return obj.get();
     }
 
+    public Clinica insert(Clinica obj){
+        return repository.save(obj);
+    }
+
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
+
+    public Clinica update(Long id, Clinica obj){
+        Clinica entity = repository.getOne(id);
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(Clinica entity, Clinica obj) {
+        entity.setName(obj.getName());
+    }
+
 }
